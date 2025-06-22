@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('quiz_answers', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('quiz_attempt_id')->references('id')->on('quiz_attempts');
             $table->foreignId('question_id')->references('id')->on('questions');
             $table->text('user_answer')->nullable();
+            $table->enum('status', ['answered', 'flagged', 'empty'])->default('empty');
             $table->timestamps();
         });
     }
