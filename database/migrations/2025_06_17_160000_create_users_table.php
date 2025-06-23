@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('competition_id')->references('id')->on('competition');
-            $table->enum('role', ['peserta', 'admin']);
+            $table->foreignId('competition_id')->nullable()->references('id')->on('competition');
+            $table->enum('role', ['peserta', 'admin'])->default('peserta');
             $table->rememberToken();
             $table->timestamps();
         });
